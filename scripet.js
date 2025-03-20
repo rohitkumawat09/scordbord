@@ -1,39 +1,94 @@
-const best = document.querySelector("#one");
-const lastname = document.querySelector("#two");
-const number = document.querySelector("#number");
-const btn = document.querySelector("button");
-const india = document.querySelector("#india select");
-const parent = document.querySelector(".parent");
-btn.addEventListener("click", (event) => {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+    const fullname = document.querySelector("#fname");
+    const lastname = document.querySelector("#lname");
+    const countries = document.querySelector("#countries");
+    const score = document.querySelector("#score");
+    const container = document.querySelector(".score-container");
+    const btn = document.querySelector("#btn");
+    let scorearray = [];
+console.log(scorearray);
 
+    if (btn) {
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
 
-    const paraFirst = document.createElement("p");
-    const name = best.value
-    paraFirst.textContent = name;
-    parent.appendChild(paraFirst);
+            const scoreValue = Number(score.value);
+     
+            let obj1 = {
+                id: scorearray.length + 1,
+                fname: fullname.value,
+                lname: lastname.value,
+                countries: countries.value,
+                score: scoreValue,
+            };
 
-    const paraLast = document.createElement("p");
-    const nextname = lastname.value
-    paraLast.textContent = nextname;
-    parent.appendChild(paraLast);
+            scorearray.push(obj1);
+            name();
+            displayScores();
+        });
+    }
 
-    const paraNumber = document.createElement("p");
-    const number2 = number.value
-    paraNumber.textContent = number2;
-    parent.appendChild(paraNumber);
+    function name() {
+        scorearray.sort((a, b) => b.score - a.score); 
+    }
 
-    const paraCountry = document.createElement("p");
-    const a = india.value; 
-    paraCountry.textContent = a;
-    parent.appendChild(paraCountry);
+    function displayScores() {
+        container.innerHTML = ""; 
 
+        scorearray.forEach((obj1) => {
+            const scoreCard = document.createElement("div");
+            scoreCard.classList.add("score-card");
 
-    best.value = '';
-    lastname.value = '';
-    number.value = '';
-    india.selectedIndex = 0;
-    console.log(parent);
-    console.log(paraCountry);
+            const name = document.createElement("p");
+            name.innerHTML = `${obj1.fname} ${obj1.lname}`;
 
+            const country = document.createElement("p");
+            country.innerHTML = `Country: ${obj1.countries}`;
+
+            const scoreValue = document.createElement("p");
+            scoreValue.innerHTML = `Score: ${obj1.score}`;
+
+            const deleteBtn = document.createElement("button");
+            deleteBtn.innerHTML = "Delete";
+            deleteBtn.classList.add("delete-btn");
+            deleteBtn.addEventListener("click", () => deleteScore(obj1, scoreCard));
+
+            const inkerement = document.createElement("button");
+            inkerement.innerHTML = "+5";
+            inkerement.addEventListener("click", () => inkrementScore(obj1, scoreValue));
+
+            const deckrement = document.createElement("button");
+            deckrement.innerHTML = "-5";
+            deckrement.addEventListener("click", () => deckrementScore(obj1, scoreValue));
+
+            scoreCard.append(name, country, scoreValue, inkerement, deckrement, deleteBtn);
+            container.append(scoreCard);
+        });
+
+        fullname.value = "";
+        lastname.value = "";
+        score.value = "";
+        countries.value = "Choose Country";
+    }
+
+    function deleteScore(obj, card) {
+        scorearray = scorearray.filter((item) => item !== obj);
+        name()
+
+        card.remove();
+    }
+
+    function inkrementScore(obj, scoreValueElement) {
+        obj.score += 5;
+        scoreValueElement.innerHTML = `Score: ${obj.score}`;
+        name();
+        inkrementScore();
+    }
+
+    function deckrementScore(obj, scoreValueElement) {
+        obj.score -= 5;
+        scoreValueElement.innerHTML = `Score: ${obj.score}`;
+        name();
+        deckrementScore();
+    }
 });

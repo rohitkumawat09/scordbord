@@ -3,36 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Score Management</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="name">
-
-        <div >
-            <input type="text" placeholder="plese enter your name" id="one">
-        </div>
-        <div >
-            <input type="text" placeholder="plese enter your  last name" id="two">
-        </div>
-        <div>
-            <input type="number" placeholder="plese enter your  last name"  id="number">
-        </div>
-        
-      
-        <select  id="india">
-            <option value="">india</option>
-            <option value="">England</option>
-            <option value="Australia
-            ">Australia</option>
+    <div class="form-container">
+        <input type="text" id="fname" placeholder="First Name">
+        <input type="text" id="lname" placeholder="Last Name">
+        <input type="number" id="score" placeholder="Score">
+        <select id="countries">
+            <option value="">Choose Country</option>
+            <option value="India">India</option>
+            <option value="England">England</option>
+            <option value="Australia">Australia</option>
         </select>
-        <div class="btn">
-            <button>add</button>
-        </div>
-<div class="parent"></div>
+        <button id="btn">Add Score</button>
     </div>
 
-    
+    <div class="score-container"></div>
 
     <script src="scripet.js"></script>
 </body>
