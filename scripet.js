@@ -6,14 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector(".score-container");
     const btn = document.querySelector("#btn");
     let scorearray = [];
-console.log(scorearray);
+    console.log(scorearray);
 
     if (btn) {
         btn.addEventListener("click", (e) => {
             e.preventDefault();
-
+            if (!fullname.value || !lastname.value || !countries.value || !score.value) {
+                alert("Please fill in all fields ");
+                return;
+            }
             const scoreValue = Number(score.value);
-     
+
             let obj1 = {
                 id: scorearray.length + 1,
                 fname: fullname.value,
@@ -29,11 +32,11 @@ console.log(scorearray);
     }
 
     function name() {
-        scorearray.sort((a, b) => b.score - a.score); 
+        scorearray.sort((a, b) => b.score - a.score);
     }
 
     function displayScores() {
-        container.innerHTML = ""; 
+        container.innerHTML = "";
 
         scorearray.forEach((obj1) => {
             const scoreCard = document.createElement("div");
@@ -82,13 +85,24 @@ console.log(scorearray);
         obj.score += 5;
         scoreValueElement.innerHTML = `Score: ${obj.score}`;
         name();
-        inkrementScore();
+        // inkrementScore();
+        displayScores();
     }
 
     function deckrementScore(obj, scoreValueElement) {
-        obj.score -= 5;
-        scoreValueElement.innerHTML = `Score: ${obj.score}`;
-        name();
-        deckrementScore();
+
+
+
+        if (obj.score - 5 >= 0) {
+            obj.score -= 5;
+            scoreValueElement.innerHTML = `Score: ${obj.score}`;
+        } else {
+            alert("Score cannot be less than 0.");
+        }
+        // obj.score -=5;
+        // scoreValueElement.innerHTML = `Score: ${obj.score}`;
+        // name();
+        // deckrementScore();
+        displayScores();
     }
 });

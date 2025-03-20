@@ -23,5 +23,33 @@
     <div class="score-container"></div>
 
     <script src="scripet.js"></script>
+
+
+    <script>
+        const playersData = [
+    { name: "Harendra", score: 19 },
+    { name: "Rohit", score: 45 },
+    { name: "Manish", score: 18 },
+    { name: "Ved", score: 77 },
+    { name: "Ranveer", score: 99 },
+    { name: "Sandeep", score: 26 },
+    { name: "Rishabh", score: 29 },
+]
+
+for(let i=0;i<playersData.length;i++){
+  for(let j=i+1;j<playersData.length;j++){
+    if(playersData[i].score < playersData[j].score){
+      const next = playersData[i];
+      playersData[i] = playersData[j];
+      playersData[j] = next;
+    }
+  }
+}
+
+console.log(playersData); 
+
+    
+
+    </script>
 </body>
 </html>
