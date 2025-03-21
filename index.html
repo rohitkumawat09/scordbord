@@ -8,48 +8,34 @@
 </head>
 <body>
     <div class="form-container">
-        <input type="text" id="fname" placeholder="First Name">
-        <input type="text" id="lname" placeholder="Last Name">
-        <input type="number" id="score" placeholder="Score">
-        <select id="countries">
-            <option value="">Choose Country</option>
-            <option value="India">India</option>
-            <option value="England">England</option>
-            <option value="Australia">Australia</option>
-        </select>
-        <button id="btn">Add Score</button>
+        <form>
+            <input type="text" id="fname" placeholder="First Name">
+            <input type="text" id="lname" placeholder="Last Name" >
+            <input type="number" id="score" placeholder="Score">
+            <select id="country" >
+                <option value="">Choose Country</option>
+                <option value="India">India</option>
+                <option value="England">England</option>
+                <option value="Australia">Australia</option>
+            </select>
+            <button type="submit">Add Score</button>
+        </form>
     </div>
 
-    <div class="score-container"></div>
+    <div id="results" class="score-container"></div>
 
-    <script src="scripet.js"></script>
-
-
-    <script>
-        const playersData = [
-    { name: "Harendra", score: 19 },
-    { name: "Rohit", score: 45 },
-    { name: "Manish", score: 18 },
-    { name: "Ved", score: 77 },
-    { name: "Ranveer", score: 99 },
-    { name: "Sandeep", score: 26 },
-    { name: "Rishabh", score: 29 },
-]
-
-for(let i=0;i<playersData.length;i++){
-  for(let j=i+1;j<playersData.length;j++){
-    if(playersData[i].score < playersData[j].score){
-      const next = playersData[i];
-      playersData[i] = playersData[j];
-      playersData[j] = next;
-    }
-  }
-}
-
-console.log(playersData); 
-
-    
-
+    <script src="scripet.js">
+        
     </script>
+  
 </body>
 </html>
+
+
+<script>
+    let arr = [1, 2, [3, 4], [5, [6, 7]]];
+    
+    let flatArr = arr.flat();
+    
+    console.log(flatArr);
+    </script>

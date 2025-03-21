@@ -90,7 +90,7 @@ span {
     cursor: pointer;
 }
 
-.score-card {
+.data {
     text-align: center;
     display: flex
 ;
@@ -98,7 +98,15 @@ span {
     padding: 20px;
     align-items: center;
 }
-
+button {
+    background: red;
+    font-size: 21px;
+}
+div#results {
+    background-color: aqua;
+    margin: 101px;
+    border-radius: 30px;
+}
 
 
 
